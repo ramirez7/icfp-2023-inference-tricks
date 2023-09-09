@@ -13,19 +13,8 @@ type The fe a es = (HasOne fe a es, HasOnly fe a es)
 
 class fe a :> es => HasOne (fe :: Type -> Effect) (a :: Type) (es :: [Effect]) | es fe -> a
 
--- Error handling:
-
-class FoundTwice fe a b
-instance TypeError
-  ('Text "Found The " ':<>: 'ShowType fe ':<>: 'Text " twice:" ':$$:
-   'Text "" ':$$:
-   'Text "* " ':<>: 'ShowType (fe a) ':$$:
-   'Text "* " ':<>: 'ShowType (fe b)
-  ) => FoundTwice fe a b
-
 instance HasNone fe a es => HasOne fe a (fe a : es)
 instance {-# OVERLAPPABLE #-} HasOne fe a es => HasOne fe a (_1 : es)
-
 class HasNone (fe :: Type -> Effect) (a :: Type) (es :: [Effect])
 
 instance TypeError
@@ -36,6 +25,7 @@ instance TypeError
   ) => HasNone fe a (fe a : es)
 
 instance {-# OVERLAPPABLE #-} HasNone fe a es => HasNone fe a (_1 : es)
+instance HasNone fe a '[]
 
 class HasOnly (fe :: Type -> Effect) (b :: Type)  (es :: [Effect])
 
