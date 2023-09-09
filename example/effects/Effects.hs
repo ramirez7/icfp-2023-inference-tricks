@@ -1,4 +1,4 @@
-module NoInference where
+module Effects where
 
 import Cleff
 import Cleff.Reader
@@ -8,8 +8,9 @@ import Data.Maybe (isJust)
 {-
 asks
   :: Reader r :> es
-  => (r -> s)
-  -> Eff es s
+  => (r -> r')
+  -> Eff es r'
+asks f = fmap f ask
 -}
 
 noInference :: Reader [Int] :> es => Eff es Int
