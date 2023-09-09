@@ -31,7 +31,7 @@ library no-inference
     default-language: GHC2021
 
 library the-proof
-    exposed-modules: NoInference
+    exposed-modules: TheProof
     build-depends:
         base ^>=4.16.4.0,
         icfp2023-inference-tricks,
