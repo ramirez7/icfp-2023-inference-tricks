@@ -25,6 +25,7 @@ instance TypeError
    'Text "* " ':<>: 'ShowType (fe b)
   ) => HasNone b fe (fe a : es)
 
+instance {-# OVERLAPS #-} HasNone b fe es => HasNone b fe (fe b : es)
 instance {-# OVERLAPPABLE #-} HasNone b fe es => HasNone b fe (_1 : es)
 instance HasNone _1 _2 '[]
 

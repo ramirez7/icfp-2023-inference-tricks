@@ -13,7 +13,7 @@ build-type:         Simple
 extra-doc-files:    CHANGELOG.md
 
 library
-    exposed-modules:  Imp, The
+    exposed-modules:  Imp, The, Dict
     -- other-modules:
     -- other-extensions:
     build-depends:    base ^>=4.16.4.0, cleff

@@ -1,3 +1,7 @@
+repl:
+	cabal repl lib:icfp2023-inference-tricks
+.PHONY: repl
+
 lib:
 	cabal build icfp2023-inference-tricks
 .PHONY: lib
