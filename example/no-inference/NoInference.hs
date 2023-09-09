@@ -4,6 +4,7 @@ module NoInference where
 import Cleff
 import Cleff.Reader
 import Data.Maybe (isJust)
+import GHC.List as List
 
-noInference :: Reader (Maybe Int) :> es => Eff es Bool
-noInference = asks isJust
+noInference :: Reader [Int] :> es => Eff es Int
+noInference = asks List.length
