@@ -14,7 +14,7 @@ class fe a :> es => The (fe :: Type -> Effect) (a :: Type) (es :: [Effect]) | es
 instance HasNone a fe es => The fe a (fe a : es)
 instance {-# OVERLAPPABLE #-} The fe a es => The fe a (_1 : es)
 
--- Type error when we have duplicates:
+-- Type error when we have others:
 
 class HasNone (b :: Type) (fe :: Type -> Effect) (es :: [Effect])
 
@@ -24,6 +24,7 @@ instance TypeError
    'Text "* " ':<>: 'ShowType (fe a) ':$$:
    'Text "* " ':<>: 'ShowType (fe b)
   ) => HasNone b fe (fe a : es)
+
 instance {-# OVERLAPPABLE #-} HasNone b fe es => HasNone b fe (_1 : es)
 instance HasNone _1 _2 '[]
 
