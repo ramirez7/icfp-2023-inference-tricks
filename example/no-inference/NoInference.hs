@@ -1,16 +1,20 @@
 module NoInference where
 
-import Cleff
-import Cleff.Reader
-import Data.Maybe (isJust)
+-- Multi-param type class..
+class Monad m => MonadReader r m where
+  ask :: m r
 
-
-{-
+-- ..plus Polymorphic usage
 asks
-  :: Reader r :> es
-  => (r -> s)
-  -> Eff es s
--}
+  :: MonadReader r m
+  => (r -> r')
+  -> m r'
+asks f = fmap f ask
 
-noInference :: Reader [Int] :> es => Eff es Int
+-- ..equals poor inference
+noInference :: MonadReader [Int] m => m Int
 noInference = asks length
+
+-- Other common examples:
+-- Function composition
+-- Overloaded records/label

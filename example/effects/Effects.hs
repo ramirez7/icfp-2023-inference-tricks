@@ -1,9 +1,14 @@
+{-# LANGUAGE DataKinds #-}
+
 module Effects where
 
 import Cleff
 import Cleff.Reader
-import Data.Maybe (isJust)
+import Cleff.State
 
+noInference :: Eff '[State Bool, Reader [Int], IOE] Int
+--noInference :: Reader [Int] :> es => Eff es Int
+noInference = asks length
 
 {-
 asks
@@ -13,5 +18,3 @@ asks
 asks f = fmap f ask
 -}
 
-noInference :: Reader [Int] :> es => Eff es Int
-noInference = asks length

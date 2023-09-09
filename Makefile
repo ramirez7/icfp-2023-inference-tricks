@@ -6,6 +6,14 @@ no-inference:
 	cabal build lib:no-inference
 .PHONY: no-inference
 
+fundep:
+	cabal build lib:fundep
+.PHONY: fundep
+
+effects:
+	cabal build lib:effects
+.PHONY: effects
+
 explicit:
 	cabal build lib:explicit
 .PHONY: explicit

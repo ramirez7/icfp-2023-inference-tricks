@@ -1,11 +1,12 @@
-{-# LANGUAGE OverloadedRecordDot #-}
+{-# LANGUAGE DataKinds #-}
 module TheProof where
 
 import Cleff
 import Cleff.Reader
-import Data.Maybe (isJust)
+import Cleff.State
 
 import The
 
-theInference :: The Reader [Int] es => Eff es Int
+theInference :: Eff '[State Bool, Reader [Int], IOE] Int
+--theInference :: The Reader [Int] es => Eff es Int
 theInference = asksThe length

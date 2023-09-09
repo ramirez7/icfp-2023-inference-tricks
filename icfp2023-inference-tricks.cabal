@@ -37,7 +37,7 @@ library fundep
         icfp2023-inference-tricks,
         cleff
 
-    hs-source-dirs:   examples/fundep
+    hs-source-dirs:   example/fundep
     default-language: GHC2021
 
 library effects
