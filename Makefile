@@ -6,6 +6,10 @@ no-inference:
 	cabal build lib:no-inference
 .PHONY: no-inference
 
+explicit:
+	cabal build lib:explicit
+.PHONY: explicit
+
 the-proof:
 	cabal build lib:the-proof
 .PHONY: the-proof

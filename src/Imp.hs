@@ -12,7 +12,7 @@ type ImpReader r = (?impReader :: Proxy r)
 
 impAsks
   :: forall r r' es
-   . (?impReader :: Proxy r)
+   . ImpReader r
   => Reader r :> es
   => (r -> r')
   -> Eff es r'

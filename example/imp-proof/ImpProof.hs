@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedRecordDot #-}
 {-# LANGUAGE DataKinds #-}
 
 module ImpProof where

@@ -30,6 +30,17 @@ library no-inference
     hs-source-dirs:   example/no-inference
     default-language: GHC2021
 
+library explicit
+    exposed-modules: Explicit
+    build-depends:
+        base ^>=4.16.4.0,
+        icfp2023-inference-tricks,
+        cleff
+
+    hs-source-dirs:   example/explicit
+    default-language: GHC2021
+
+
 library the-proof
     exposed-modules: TheProof
     build-depends:
