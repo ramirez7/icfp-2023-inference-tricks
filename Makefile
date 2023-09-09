@@ -2,6 +2,11 @@ lib:
 	cabal build icfp2023-inference-tricks
 .PHONY: lib
 
+prep:
+	cabal clean
+	cabal build icfp2023-inference-tricks
+.PHONY: prep
+
 no-inference:
 	cabal build lib:no-inference
 .PHONY: no-inference
