@@ -13,7 +13,6 @@ theInference :: Eff '[State Bool, Reader [Int], IOE] Int
 -- Type Errors:
 --theInference :: Eff '[Reader Bool, Reader [Int], IOE] Int
 --theInference :: Eff '[Reader [Int], Reader Bool, IOE] Int
---theInference :: Eff '[Reader [Bool], Reader [Int], IOE] Int
 --theInference :: Eff '[Reader [Int], Reader [Int], IOE] Int
 
 theInference = asksThe length
