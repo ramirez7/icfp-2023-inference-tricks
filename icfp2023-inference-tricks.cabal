@@ -11,13 +11,8 @@ maintainer:         armando.m.ramirez@gmail.com
 category:           Tricks
 build-type:         Simple
 extra-doc-files:    CHANGELOG.md
--- extra-source-files:
-
-common warnings
-    ghc-options: -Wall
 
 library
-    import:           warnings
     exposed-modules:  Imp, The
     -- other-modules:
     -- other-extensions:
@@ -25,14 +20,12 @@ library
     hs-source-dirs:   src
     default-language: GHC2021
 
-executable icfp2023-inference-tricks
-    import:           warnings
-    main-is:          Main.hs
-    -- other-modules:
-    -- other-extensions:
+library no-inference
+    exposed-modules: NoInference
     build-depends:
         base ^>=4.16.4.0,
-        icfp2023-inference-tricks
+        icfp2023-inference-tricks,
+        cleff
 
-    hs-source-dirs:   exe
+    hs-source-dirs:   example/no-inference
     default-language: GHC2021
