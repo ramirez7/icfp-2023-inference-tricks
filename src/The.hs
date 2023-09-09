@@ -9,24 +9,36 @@ import GHC.TypeLits
 import Cleff
 import Cleff.Reader
 
-class fe a :> es => The (fe :: Type -> Effect) (a :: Type) (es :: [Effect]) | es fe -> a
+type The fe a es = (HasOne fe a es, HasOnly fe a es)
 
-instance HasNone a fe es => The fe a (fe a : es)
-instance {-# OVERLAPPABLE #-} The fe a es => The fe a (_1 : es)
+class fe a :> es => HasOne (fe :: Type -> Effect) (a :: Type) (es :: [Effect]) | es fe -> a
 
--- Type error when we have others:
+instance HasNone fe a es => HasOne fe a (fe a : es)
+instance {-# OVERLAPPABLE #-} HasOne fe a es => HasOne fe a (_1 : es)
+class HasNone (fe :: Type -> Effect) (a :: Type) (es :: [Effect])
 
-class HasNone (b :: Type) (fe :: Type -> Effect) (es :: [Effect])
+instance TypeError
+  ('Text "Found The " ':<>: 'ShowType fe ':<>: 'Text " twice:" ':$$:
+   'Text "" ':$$:
+   'Text "* " ':<>: 'ShowType (fe a) ':$$:
+   'Text "* " ':<>: 'ShowType (fe a)
+  ) => HasNone fe a (fe a : es)
+
+instance {-# OVERLAPPABLE #-} HasNone fe a es => HasNone fe a (_1 : es)
+instance HasNone fe a '[]
+
+class HasOnly (fe :: Type -> Effect) (b :: Type)  (es :: [Effect])
 
 instance TypeError
   ('Text "Found The " ':<>: 'ShowType fe ':<>: 'Text " twice:" ':$$:
    'Text "" ':$$:
    'Text "* " ':<>: 'ShowType (fe a) ':$$:
    'Text "* " ':<>: 'ShowType (fe b)
-  ) => HasNone b fe (fe a : es)
+  ) => HasOnly fe b (fe a : es)
 
-instance {-# OVERLAPPABLE #-} HasNone b fe es => HasNone b fe (_1 : es)
-instance HasNone _1 _2 '[]
+instance {-# OVERLAPS #-} HasOnly fe b es => HasOnly fe b (fe b : es)
+instance {-# OVERLAPPABLE #-} HasOnly fe b es => HasOnly fe b (_1 : es)
+instance HasOnly _1 _2 '[]
 
 -- asks wrapper
 
