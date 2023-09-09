@@ -30,6 +30,26 @@ library no-inference
     hs-source-dirs:   example/no-inference
     default-language: GHC2021
 
+library fundep
+    exposed-modules: Fundep
+    build-depends:
+        base ^>=4.16.4.0,
+        icfp2023-inference-tricks,
+        cleff
+
+    hs-source-dirs:   examples/fundep
+    default-language: GHC2021
+
+library effects
+    exposed-modules: Effects
+    build-depends:
+        base ^>=4.16.4.0,
+        icfp2023-inference-tricks,
+        cleff
+
+    hs-source-dirs:   example/effects
+    default-language: GHC2021
+
 library explicit
     exposed-modules: Explicit
     build-depends:
