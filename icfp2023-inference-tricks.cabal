@@ -39,3 +39,13 @@ library the-proof
 
     hs-source-dirs:   example/the-proof
     default-language: GHC2021
+
+library imp-proof
+    exposed-modules: ImpProof
+    build-depends:
+        base ^>=4.16.4.0,
+        icfp2023-inference-tricks,
+        cleff
+
+    hs-source-dirs:   example/imp-proof
+    default-language: GHC2021
