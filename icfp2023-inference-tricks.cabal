@@ -21,7 +21,7 @@ library
     exposed-modules:  Imp, The
     -- other-modules:
     -- other-extensions:
-    build-depends:    base ^>=4.16.4.0
+    build-depends:    base ^>=4.16.4.0, cleff
     hs-source-dirs:   src
     default-language: GHC2021
 

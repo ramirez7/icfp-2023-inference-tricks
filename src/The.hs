@@ -1,11 +1,19 @@
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE UndecidableInstances #-}
+
 module The where
+
+import Data.Kind
+import GHC.TypeLits
+import Cleff
 
 class fe a :> es => The (fe :: Type -> Effect) (es :: [Effect]) (a :: Type) | es fe -> a
 
 instance HasNone a fe es => The fe (fe a : es) a
 instance {-# OVERLAPPABLE #-} The fe es a => The fe (_1 : es) a
 
--- Error when we have duplicates:
+-- Type error when we have duplicates:
 
 class HasNone (b :: Type) (fe :: Type -> Effect) (es :: [Effect])
 

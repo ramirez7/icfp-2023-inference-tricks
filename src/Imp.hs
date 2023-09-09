@@ -1,8 +1,12 @@
 {-# LANGUAGE ImplicitParams #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE TypeApplications #-}
 
 module Imp where
 
 import Data.Proxy
+import Cleff
+import Cleff.Reader
 
 type ImpReader r = (?impReader :: Proxy r)
 
@@ -16,6 +20,6 @@ impAsks = asks
 
 withImpReader
   :: forall r k
-   . (?impReader :: Proxy r => k)
+   . (ImpReader r => k)
   -> k
-withImpReader k = let ?impReader = Proxy @a in k
+withImpReader k = let ?impReader = Proxy @r in k
