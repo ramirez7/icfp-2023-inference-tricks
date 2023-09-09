@@ -14,6 +14,10 @@ import Cleff.Reader
 type The :: (Type -> Effect) -> Type -> [Effect] -> Constraint
 type The fe a es = (HasOne fe a es, HasOnly fe a es)
 
+-- asks wrapper
+asksThe :: forall r r' es. The Reader r es => (r -> r') -> Eff es r'
+asksThe = asks @r
+
 ---------------------------------------------------------
 -- Search for (fe a)
 --
@@ -55,7 +59,5 @@ instance {-# OVERLAPPABLE #-} HasOnly fe b es => HasOnly fe b (_1 : es)
 instance HasOnly _1 _2 '[]
 
 ---------------------------------------------------------
--- asks wrapper
-asksThe :: forall r r' es. The Reader r es => (r -> r') -> Eff es r'
-asksThe = asks @r
+
 
