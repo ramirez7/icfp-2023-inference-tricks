@@ -1,7 +1,9 @@
+{-# LANGUAGE OverloadedRecordDot #-}
 module NoInference where
 
 import Cleff
 import Cleff.Reader
+import Data.Maybe (isJust)
 
-noInference :: Reader Int :> es => Eff es String
-noInference = asks show
+noInference :: Reader (Maybe Int) :> es => Eff es Bool
+noInference = asks isJust
