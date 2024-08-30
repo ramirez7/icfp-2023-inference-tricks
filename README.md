@@ -1,5 +1,7 @@
 # ICFP 2023 Lightning Talk
 
+[Recording](https://youtu.be/KpaCDZw1KyE?t=636)
+
 ## Two Tricks to Guide Type Inference
 
 1. Decoupled functional dependencies
